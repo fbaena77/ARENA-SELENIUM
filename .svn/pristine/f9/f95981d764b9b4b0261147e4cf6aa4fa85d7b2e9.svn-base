@@ -1,0 +1,10 @@
+com/fujitsu/selenium/Interesados.class
+com/fujitsu/selenium/SeleniumSetup.class
+com/fujitsu/utils/Constants.class
+com/fujitsu/TestRunner.class
+test/java/LoginTest.class
+test/java/JunitTestSuite.class
+com/fujitsu/selenium/Tramitadores.class
+test/java/InteresadosTest.class
+com/fujitsu/selenium/Login.class
+test/java/TramitadoresTest.class

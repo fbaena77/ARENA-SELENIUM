@@ -1,0 +1,62 @@
+package es.juntadeandalucia.selenium;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+
+import static es.juntadeandalucia.utils.Constants.*;
+
+public class SeleniumSetup {
+
+	private static Properties config = new Properties();
+	public static WebDriver driver;
+
+	public SeleniumSetup() {
+		InputStream input = null;
+
+		try {
+			input = SeleniumSetup.class.getClassLoader().getResourceAsStream(
+					"app.properties");
+
+			getConfig().load(input);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		System.setProperty("phantomjs.binary.path", "/home/ecosistema/phantomjs");
+		// System.setProperty("webdriver.gecko.driver", "bin/geckodriver");
+		driver = new PhantomJSDriver();
+		driver.get(URL_LOGIN);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	public String getCurrentUrl() {
+		return driver.getCurrentUrl();
+	}
+
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+	}
+
+	public static Properties getConfig() {
+		return config;
+	}
+
+	public static void setConfig(Properties config) {
+		SeleniumSetup.config = config;
+	}
+}

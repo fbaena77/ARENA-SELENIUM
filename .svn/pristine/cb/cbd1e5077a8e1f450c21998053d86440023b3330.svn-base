@@ -1,0 +1,18 @@
+package es.juntadeandalucia;
+
+public class TestRunner {
+
+	public static void main(String[] args) {
+		
+		/*Result result = JUnitCore.runClasses(JunitTestSuite.class);
+
+		for (Failure failure : result.getFailures()) {
+			System.out.println(failure.getTestHeader());
+			System.out.println(failure.getMessage());
+			System.out.println(failure.getDescription());
+		}
+
+		System.out.println(result.wasSuccessful());
+		*/
+	}
+}

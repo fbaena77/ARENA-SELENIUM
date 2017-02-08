@@ -1,0 +1,33 @@
+package es.juntadeandalucia.selenium;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.GeckoDriverService;
+import org.openqa.selenium.firefox.MarionetteDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+
+import es.juntadeandalucia.utils.Constants;
+
+public class SeleniumSetup {
+
+	public static WebDriver driver;
+
+	public SeleniumSetup() {
+		System.setProperty("phantomjs.binary.path", "bin/phantomjs");
+		//System.setProperty("webdriver.gecko.driver", "bin/geckodriver");
+		driver = new PhantomJSDriver();
+		driver.get(Constants.URL_LOGIN);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	public String getCurrentUrl() {
+		return driver.getCurrentUrl();
+	}
+
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+	}
+}

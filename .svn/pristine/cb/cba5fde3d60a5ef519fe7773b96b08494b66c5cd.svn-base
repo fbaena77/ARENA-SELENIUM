@@ -1,0 +1,31 @@
+package test.java;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.AfterClass;
+import org.junit.Test;
+
+import com.fujitsu.selenium.Login;
+import com.fujitsu.utils.Constants;
+
+public class LoginTest {
+	
+	public static final Login login = new Login();
+	
+	@Test
+	public void CAP_S_001_doLoginTest() throws Exception {
+		assertTrue(login.doLogin(Constants.USER, Constants.PASSWORD));
+	}
+
+	//@Test
+	public void changeRoleTest() {
+		if (login.checkChangeRoleButtonExist()) {
+			assertTrue(login.changeRoleTest());
+		}
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		login.tearDown();
+	}
+}

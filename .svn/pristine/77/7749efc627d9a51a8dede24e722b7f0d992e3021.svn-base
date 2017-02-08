@@ -1,0 +1,9 @@
+package es.juntadeandalucia;
+
+
+//@RunWith(Suite.class)
+//@Suite.SuiteClasses({ LoginTest.class, InteresadosTest.class,
+//		TramitadoresTest.class })
+public class JunitTestSuite {
+
+}

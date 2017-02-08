@@ -1,0 +1,23 @@
+package es.juntadeandalucia.utils;
+
+public class Constants {
+	
+	public final static String URL_BASE = "http://docker-server.isotrol.net:18080/medioambiente/arena/";
+	public final static String URL_LOGIN = "http://docker-server.isotrol.net:18080/medioambiente/arena/login.html";
+	public final static String URL_HOME= "http://docker-server.isotrol.net:18080/medioambiente/arena/bienvenida.html";
+	public final static String USER= "desarrolloSF";
+	public final static String PASSWORD= "arena1";
+	
+	/*public final static String URL_BASE = "http://192.168.121.157:8080/medioambiente/arena/";
+	public final static String URL_LOGIN = "http://192.168.121.157:8080/medioambiente/arena/login.html";
+	public final static String URL_HOME= "http://192.168.121.157:8080/medioambiente/arena/bienvenida.html";
+	public final static String USER= "enrique.cardona@fujitsu.es";
+	public final static String PASSWORD= "arena1";
+	*/
+	/*public final static String URL_BASE = "http://lubina:8080/medioambiente/arena/";
+	public final static String URL_LOGIN = "http://lubina:8080/medioambiente/arena/login.html";
+	public final static String URL_HOME= "http://lubina:8080/medioambiente/arena/bienvenida.html";
+	public final static String USER= "aitor.fernandez.fujitsu.es";
+	public final static String PASSWORD= "arena1";
+	*/
+}

@@ -10,9 +10,12 @@ import es.juntadeandalucia.selenium.Login;
 import es.juntadeandalucia.selenium.SeleniumSetup;
 import static es.juntadeandalucia.utils.Constants.*;
 
-public class Interesados extends SeleniumSetup {
+public class Interesados {
 
-	private final String SEARCH_INTERESADOS_URL = "faces/interesado/search.xhtml";
+	private static final String SEARCH_INTERESADOS_URL = "faces/interesado/search.xhtml";
+	private static final String ELEMENT_NOMBRE_CREATE = "create:interesadoBeanInteresadoNombre";
+	private static final String ELEMENT_NUMID_CREATE = "create:interesadoBeanInteresadoNumeroIdentificativo";
+	private final SeleniumSetup setup = SeleniumSetup.getInstance();
 	public final Login login = new Login();
 
 	public Interesados() {
@@ -23,31 +26,31 @@ public class Interesados extends SeleniumSetup {
 	}
 
 	public boolean doModifyInterested() throws MalformedURLException {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(By.linkText("Interesados")).click();
-		driver.findElement(By.id("search:interesadoBeanPageItems:0:itemNombre"))
+		setup.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		setup.getDriver().findElement(By.linkText("Interesados")).click();
+		setup.getDriver().findElement(By.id("search:interesadoBeanPageItems:0:itemNombre"))
 				.click();
-		driver.findElement(By.linkText("Editar")).click();
-		driver.findElement(By.id("create:interesadoBeanInteresadoNombre"))
+		setup.getDriver().findElement(By.linkText("Editar")).click();
+		setup.getDriver().findElement(By.id(ELEMENT_NOMBRE_CREATE))
 				.click();
-		driver.findElement(By.id("create:interesadoBeanInteresadoNombre"))
+		setup.getDriver().findElement(By.id(ELEMENT_NOMBRE_CREATE))
 				.clear();
 		String nameTest = "John Doe Vagabundo";
-		driver.findElement(By.id("create:interesadoBeanInteresadoNombre"))
+		setup.getDriver().findElement(By.id(ELEMENT_NOMBRE_CREATE))
 				.sendKeys(nameTest);
-		driver.findElement(
-				By.id("create:interesadoBeanInteresadoNumeroIdentificativo"))
+		setup.getDriver().findElement(
+				By.id(ELEMENT_NUMID_CREATE))
 				.click();
-		driver.findElement(
-				By.id("create:interesadoBeanInteresadoNumeroIdentificativo"))
+		setup.getDriver().findElement(
+				By.id(ELEMENT_NUMID_CREATE))
 				.clear();
-		driver.findElement(
-				By.id("create:interesadoBeanInteresadoNumeroIdentificativo"))
+		setup.getDriver().findElement(
+				By.id(ELEMENT_NUMID_CREATE))
 				.sendKeys("12345678Z");
-		driver.findElement(By.linkText("Guardar")).click();
+		setup.getDriver().findElement(By.linkText("Guardar")).click();
 		URL urlListado = new URL(URL_BASE + SEARCH_INTERESADOS_URL);
-		driver.navigate().to(urlListado);
-		String checkName = driver.findElement(
+		setup.getDriver().navigate().to(urlListado);
+		String checkName = setup.getDriver().findElement(
 				By.id("search:interesadoBeanPageItems:0:itemNombre")).getText();
 
 		return nameTest.equals(checkName);

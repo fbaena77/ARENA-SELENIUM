@@ -4,14 +4,19 @@ import es.juntadeandalucia.selenium.SeleniumSetup;
 
 public final class Constants {
 
-	public static final String URL_BASE = SeleniumSetup.getConfig()
-			.getProperty("url.base");
-	public static final String URL_LOGIN = SeleniumSetup.getConfig()
-			.getProperty("url.login");
-	public static final String URL_HOME = SeleniumSetup.getConfig()
-			.getProperty("url.home");
-	public static final String USER = SeleniumSetup.getConfig().getProperty(
-			"user");
-	public static final String PASSWORD = SeleniumSetup.getConfig()
-			.getProperty("password");
+	private static final SeleniumSetup setup = SeleniumSetup.getInstance();
+
+	public static final String URL_BASE = setup.getConfig().getProperty(
+			"url.base");
+	public static final String URL_LOGIN = setup.getConfig().getProperty(
+			"url.login");
+	public static final String URL_HOME = setup.getConfig().getProperty(
+			"url.home");
+	public static final String USER = setup.getConfig().getProperty("user");
+	public static final String PASSWORD = setup.getConfig().getProperty(
+			"password");
+
+	private Constants() {
+
+	}
 }

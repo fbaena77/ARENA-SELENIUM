@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -12,10 +14,13 @@ import static es.juntadeandalucia.utils.Constants.*;
 
 public class SeleniumSetup {
 
+	private static final Logger LOGGER = Logger.getLogger(SeleniumSetup.class
+			.getName());
 	private static Properties config = new Properties();
-	public static WebDriver driver;
+	private WebDriver driver;
+	private static SeleniumSetup instance = null;
 
-	public SeleniumSetup() {
+	private SeleniumSetup() {
 		InputStream input = null;
 
 		try {
@@ -25,22 +30,37 @@ public class SeleniumSetup {
 			getConfig().load(input);
 
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			LOGGER.log(Level.SEVERE,
+					"Error al leer la configuración de la aplicación", ex);
 		} finally {
 			if (input != null) {
 				try {
 					input.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE,
+							"Error al cerrar el fichero de configuración", e);
 				}
 			}
 
 		}
 		System.setProperty("phantomjs.binary.path", "bin/phantomjs");
-		// System.setProperty("webdriver.gecko.driver", "bin/geckodriver");
 		driver = new PhantomJSDriver();
-		driver.get(URL_LOGIN);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	public static SeleniumSetup getInstance() {
+		if (instance == null) {
+			instance = new SeleniumSetup();
+		}
+		return instance;
+	}
+
+	public WebDriver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
 	}
 
 	public String getCurrentUrl() {
@@ -52,11 +72,7 @@ public class SeleniumSetup {
 		driver.quit();
 	}
 
-	public static Properties getConfig() {
+	public Properties getConfig() {
 		return config;
-	}
-
-	public static void setConfig(Properties config) {
-		SeleniumSetup.config = config;
 	}
 }

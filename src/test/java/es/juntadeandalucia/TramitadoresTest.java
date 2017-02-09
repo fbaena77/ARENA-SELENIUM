@@ -10,14 +10,8 @@ import es.juntadeandalucia.selenium.Tramitadores;
 
 public class TramitadoresTest {
 
-
-	public static Tramitadores tramitadores;
+	public static Tramitadores tramitadores = new Tramitadores();
 	
-	@BeforeClass
-	public static void setUp() {
-		tramitadores = new Tramitadores();
-	}
-
 	@Test
 	public void existEmailFieldTest() {
 		assertTrue(tramitadores.existEmailField());
@@ -46,10 +40,5 @@ public class TramitadoresTest {
 	@Test
 	public void newTramitadorTest() {
 		assertTrue(tramitadores.newTramitador());
-	}
-	
-	@AfterClass
-	public static void tearDown(){
-		tramitadores.tearDown();
 	}
 }

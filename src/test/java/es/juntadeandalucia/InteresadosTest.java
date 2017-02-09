@@ -5,9 +5,11 @@ import static org.junit.Assert.assertTrue;
 import java.net.MalformedURLException;
 
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.juntadeandalucia.selenium.Interesados;
+import es.juntadeandalucia.selenium.Login;
 
 public class InteresadosTest {
 
@@ -16,10 +18,5 @@ public class InteresadosTest {
 	@Test
 	public void CAP_F_048_modifyInterestedTest() throws MalformedURLException {
 		assertTrue(interesados.doModifyInterested());
-	}
-	
-	@AfterClass
-	public static void tearDown(){
-		interesados.tearDown();
 	}
 }

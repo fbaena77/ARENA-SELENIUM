@@ -40,16 +40,16 @@ public class TramitadoresTest {
 
 	@Test
 	public void emailRequiredTest() {
-		assertTrue(tramitadores.checkEmailRequired());
+		assertTrue(tramitadores.checkEmailRequired("COD1", "TestEmailRequired"));
 	}
 
 	//@Test
 	public void emailMaskTest() {
-		assertTrue(tramitadores.checkEmailMask());
+		assertTrue(tramitadores.checkEmailMask("COD2", "TestEmailMask", "test"));
 	}
 
 	@Test
 	public void newTramitadorTest() {
-		assertTrue(tramitadores.newTramitador());
+		assertTrue(tramitadores.newTramitador("COD3", "TestNewTramitador", "test@test.com"));
 	}
 }

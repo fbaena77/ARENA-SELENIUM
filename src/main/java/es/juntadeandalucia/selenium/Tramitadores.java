@@ -12,7 +12,7 @@ import static es.juntadeandalucia.utils.Constants.*;
 /**
  * @author fbaena
  * 
- * Class for the Tramitadores module
+ *         Class for the Tramitadores module
  */
 public class Tramitadores {
 
@@ -27,7 +27,7 @@ public class Tramitadores {
 	private static final String SEARCH_TRAMITADOR_URL = "faces/tramitador/search.xhtml";
 
 	/**
-	 * Selenium test case for checking if Email field exists 
+	 * Selenium test case for checking if Email field exists
 	 * 
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class Tramitadores {
 	}
 
 	/**
-	 * Selenium test case for checking if Organizacion field exists 
+	 * Selenium test case for checking if Organizacion field exists
 	 * 
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class Tramitadores {
 	}
 
 	/**
-	 * Selenium test case for checking if Nivel field exists 
+	 * Selenium test case for checking if Nivel field exists
 	 * 
 	 * @return
 	 */
@@ -93,34 +93,13 @@ public class Tramitadores {
 	}
 
 	/**
-	 * Selenium test case for checking if Email field is mandatory when registering a new Tramitador  
+	 * Selenium test case for checking if Email field is mandatory when
+	 * registering a new Tramitador
 	 * 
 	 * @return
 	 */
-	public boolean checkEmailRequired() {
-		String appUrl = URL_BASE + CREATE_TRAMITADOR_URL;
-		setup.getDriver().navigate().to(appUrl);
-		setup.getDriver().manage().window().setSize(new Dimension(1280, 1024));
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.sendKeys("COD2");
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.sendKeys("TestEmailRequired");
-		setup.getDriver().findElement(By.linkText(GUARDAR)).click();
-
+	public boolean checkEmailRequired(String code, String name) {
+		createTramitador(code, name, "");
 		List<WebElement> findElementsError = setup.getDriver().findElements(
 				By.className(ERROR));
 
@@ -135,61 +114,34 @@ public class Tramitadores {
 	}
 
 	/**
-	 * Selenium test case for checking if Email field has a mask 
+	 * Selenium test case for checking if Email field has a mask
 	 * 
 	 * @return
 	 */
-	public boolean checkEmailMask() {
-		String appUrl = URL_BASE + CREATE_TRAMITADOR_URL;
-		setup.getDriver().navigate().to(appUrl);
-		setup.getDriver().manage().window().setSize(new Dimension(1280, 1024));
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.sendKeys("CODIGO");
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.sendKeys("TestNewTramitador");
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-				.sendKeys("test");
-		setup.getDriver().findElement(By.linkText(GUARDAR)).click();
-
+	public boolean checkEmailMask(String code, String name, String email) {
+		createTramitador(code, name, email);
 		List<WebElement> findElementsError = setup.getDriver().findElements(
 				By.className(ERROR));
-
 		for (WebElement e : findElementsError) {
 			if (e.getText().startsWith("arena-1515 El modelo Regex")) {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
 	/**
-	 * Selenium test case for checking if a new Tramitador is able to be registered 
+	 * Selenium test case for checking if a new Tramitador is able to be
+	 * registered
 	 * 
 	 * @return
 	 */
-	public boolean newTramitador() {
+	public boolean newTramitador(String code, String name, String email) {
+		createTramitador(code, name, email);
+		return setup.getDriver().findElements(By.className(ERROR)).isEmpty();
+	}
+
+	private void createTramitador(String code, String name, String email) {
 		String appUrl = URL_BASE + CREATE_TRAMITADOR_URL;
 		setup.getDriver().navigate().to(appUrl);
 		setup.getDriver().manage().window().setSize(new Dimension(1280, 1024));
@@ -201,7 +153,7 @@ public class Tramitadores {
 				.clear();
 		setup.getDriver()
 				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.sendKeys("CODIGO");
+				.sendKeys(code);
 		setup.getDriver()
 				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
 				.click();
@@ -210,17 +162,19 @@ public class Tramitadores {
 				.clear();
 		setup.getDriver()
 				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.sendKeys("TestNewTramitador");
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-				.sendKeys("test@test.es");
+				.sendKeys(name);
+		
+		if (!email.isEmpty()) {
+			setup.getDriver()
+					.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+					.click();
+			setup.getDriver()
+					.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+					.clear();
+			setup.getDriver()
+					.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+					.sendKeys(email);
+		}
 		setup.getDriver().findElement(By.linkText(GUARDAR)).click();
-		return setup.getDriver().findElements(By.className(ERROR)).isEmpty();
 	}
 }

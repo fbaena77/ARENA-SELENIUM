@@ -1,4 +1,32 @@
 -------------------------------------------------------------------------------
 Test set: es.juntadeandalucia.TramitadoresTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.989 sec - in es.juntadeandalucia.TramitadoresTest
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 18.678 sec <<< FAILURE! - in es.juntadeandalucia.TramitadoresTest
+existEmailFieldTest(es.juntadeandalucia.TramitadoresTest)  Time elapsed: 0.006 sec  <<< ERROR!
+java.lang.ExceptionInInitializerError
+	at es.juntadeandalucia.TramitadoresTest.<clinit>(TramitadoresTest.java:13)
+Caused by: org.openqa.selenium.remote.ScreenshotException: 
+Screen shot has been taken
+Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:49:13 -0700'
+System info: host: 'fede-ESPRIMO-P920', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '3.13.0-98-generic', java.version: '1.8.0_101'
+Driver info: driver.version: RemoteWebDriver
+	at es.juntadeandalucia.TramitadoresTest.<clinit>(TramitadoresTest.java:13)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+{"errorMessage":"Unable to find element with id 'login'","request":{"headers":{"Accept-Encoding":"gzip,deflate","Connection":"Keep-Alive","Content-Length":"30","Content-Type":"application/json; charset=utf-8","Host":"localhost:25673","User-Agent":"Apache-HttpClient/4.5.2 (Java/1.8.0_101)"},"httpVersion":"1.1","method":"POST","post":"{\"using\":\"id\",\"value\":\"login\"}","url":"/element","urlParsed":{"anchor":"","query":"","file":"element","directory":"/","path":"/element","relative":"/element","port":"","host":"","password":"","user":"","userInfo":"","authority":"","protocol":"","source":"/element","queryKey":{},"chunks":["element"]},"urlOriginal":"/session/7d008b80-f1d3-11e6-af2f-e1059cfc06e2/element"}}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:49:13 -0700'
+System info: host: 'fede-ESPRIMO-P920', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '3.13.0-98-generic', java.version: '1.8.0_101'
+Driver info: driver.version: unknown
+
+emailRequiredTest(es.juntadeandalucia.TramitadoresTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class es.juntadeandalucia.TramitadoresTest
+
+existOrganizacionFieldTest(es.juntadeandalucia.TramitadoresTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class es.juntadeandalucia.TramitadoresTest
+
+existNivelFieldTest(es.juntadeandalucia.TramitadoresTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class es.juntadeandalucia.TramitadoresTest
+
+newTramitadorTest(es.juntadeandalucia.TramitadoresTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class es.juntadeandalucia.TramitadoresTest
+

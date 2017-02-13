@@ -1,16 +1,27 @@
 package es.juntadeandalucia;
 
+import static es.juntadeandalucia.utils.Constants.*;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import es.juntadeandalucia.selenium.Login;
 import es.juntadeandalucia.selenium.Tramitadores;
 
+/**
+ * @author fbaena
+ *
+ */
 public class TramitadoresTest {
 
 	public static Tramitadores tramitadores = new Tramitadores();
+	
+	@BeforeClass
+	public static void doLogin(){
+		final Login login = new Login();
+		assertTrue(login.doLogin(USER, PASSWORD));
+	}
 	
 	@Test
 	public void existEmailFieldTest() {

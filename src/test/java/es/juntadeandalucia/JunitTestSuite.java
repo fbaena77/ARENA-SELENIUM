@@ -9,6 +9,10 @@ import org.junit.runners.Suite;
 
 import es.juntadeandalucia.selenium.SeleniumSetup;
 
+/**
+ * @author fbaena
+ *
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ LoginTest.class, InteresadosTest.class,
 		TramitadoresTest.class })

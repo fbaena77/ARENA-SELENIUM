@@ -2,6 +2,11 @@ package es.juntadeandalucia.utils;
 
 import es.juntadeandalucia.selenium.SeleniumSetup;
 
+/**
+ * @author fbaena
+ * 
+ * Constants class
+ */
 public final class Constants {
 
 	private static final SeleniumSetup setup = SeleniumSetup.getInstance();

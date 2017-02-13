@@ -3,6 +3,10 @@ package es.juntadeandalucia;
 import org.junit.internal.TextListener;
 import org.junit.runner.JUnitCore;
 
+/**
+ * @author fbaena
+ *
+ */
 public class TestRunner {
 
 	public static void main(String[] args) {

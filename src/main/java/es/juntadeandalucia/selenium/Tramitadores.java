@@ -1,6 +1,8 @@
 package es.juntadeandalucia.selenium;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -16,6 +18,7 @@ import static es.juntadeandalucia.utils.Constants.*;
  */
 public class Tramitadores {
 
+	private static final Logger LOGGER = Logger.getLogger(Tramitadores.class.getName());
 	private final SeleniumSetup setup = SeleniumSetup.getInstance();
 
 	private static final String ERROR = "error";
@@ -141,40 +144,56 @@ public class Tramitadores {
 		return setup.getDriver().findElements(By.className(ERROR)).isEmpty();
 	}
 
-	private void createTramitador(String code, String name, String email) {
-		String appUrl = URL_BASE + CREATE_TRAMITADOR_URL;
-		setup.getDriver().navigate().to(appUrl);
-		setup.getDriver().manage().window().setSize(new Dimension(1280, 1024));
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
-				.sendKeys(code);
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.click();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.clear();
-		setup.getDriver()
-				.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
-				.sendKeys(name);
-		
-		if (!email.isEmpty()) {
+	public boolean createTramitador(String code, String name, String email) {
+		try {
+			String appUrl = URL_BASE + CREATE_TRAMITADOR_URL;
+			setup.getDriver().navigate().to(appUrl);
+			setup.getDriver().manage().window()
+					.setSize(new Dimension(1280, 1024));
 			setup.getDriver()
-					.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+					.findElement(
+							By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
 					.click();
 			setup.getDriver()
-					.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+					.findElement(
+							By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
 					.clear();
 			setup.getDriver()
-					.findElement(By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
-					.sendKeys(email);
+					.findElement(
+							By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_CODIGO))
+					.sendKeys(code);
+			setup.getDriver()
+					.findElement(
+							By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
+					.click();
+			setup.getDriver()
+					.findElement(
+							By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
+					.clear();
+			setup.getDriver()
+					.findElement(
+							By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_NOMBRE))
+					.sendKeys(name);
+
+			if (!email.isEmpty()) {
+				setup.getDriver()
+						.findElement(
+								By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+						.click();
+				setup.getDriver()
+						.findElement(
+								By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+						.clear();
+				setup.getDriver()
+						.findElement(
+								By.id(CREATE_TRAMITADOR_BEAN_TRAMITADOR_EMAIL))
+						.sendKeys(email);
+			}
+			setup.getDriver().findElement(By.linkText(GUARDAR)).click();
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error createTramitador()", e);
+			return false;
 		}
-		setup.getDriver().findElement(By.linkText(GUARDAR)).click();
 	}
 }

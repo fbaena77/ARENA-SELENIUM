@@ -1,5 +1,5 @@
 projectKey=SeleniumTests:ArenaSeleniumTests
 serverUrl=https://sonarqube.com
 dashboardUrl=https://sonarqube.com/dashboard/index/SeleniumTests:ArenaSeleniumTests
-ceTaskId=AVo3CP6PObtpoFXskwi-
-ceTaskUrl=https://sonarqube.com/api/ce/task?id=AVo3CP6PObtpoFXskwi-
+ceTaskId=AVo3F1EwObtpoFXskwjD
+ceTaskUrl=https://sonarqube.com/api/ce/task?id=AVo3F1EwObtpoFXskwjD

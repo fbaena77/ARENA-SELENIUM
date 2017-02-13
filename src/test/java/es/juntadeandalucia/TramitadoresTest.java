@@ -39,6 +39,11 @@ public class TramitadoresTest {
 	}
 
 	@Test
+	public void createTramitadorMethodTest() {
+		assertTrue(tramitadores.createTramitador("COD0", "TestCreateTramitadorMethod", "test@test.com"));
+	}
+	
+	@Test
 	public void emailRequiredTest() {
 		assertTrue(tramitadores.checkEmailRequired("COD1", "TestEmailRequired"));
 	}
